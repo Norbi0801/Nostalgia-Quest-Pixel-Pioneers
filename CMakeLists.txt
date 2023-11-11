@@ -6,7 +6,7 @@
 ############################################################
 
 cmake_minimum_required(VERSION 3.26)
-project(ProjektPJC LANGUAGES CXX)
+project(PixelPioneers LANGUAGES CXX)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
@@ -17,16 +17,16 @@ FetchContent_Declare(SFML
         GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(ProjektPJC src/main.cpp)
-target_link_libraries(ProjektPJC PRIVATE sfml-graphics)
-target_compile_features(ProjektPJC PRIVATE cxx_std_20)
+add_executable(PixelPioneers src/main.cpp)
+target_link_libraries(PixelPioneers PRIVATE sfml-graphics)
+target_compile_features(PixelPioneers PRIVATE cxx_std_20)
 
 if(WIN32)
     add_custom_command(
-            TARGET ProjektPJC
+            TARGET PixelPioneers
             COMMENT "Copy OpenAL DLL"
-            PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SFML_SOURCE_DIR}/extlibs/bin/$<IF:$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>,x64,x86>/openal32.dll $<TARGET_FILE_DIR:ProjektPJC>
+            PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SFML_SOURCE_DIR}/extlibs/bin/$<IF:$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>,x64,x86>/openal32.dll $<TARGET_FILE_DIR:PixelPioneers>
             VERBATIM)
 endif()
 
-install(TARGETS ProjektPJC)
+install(TARGETS PixelPioneers)
