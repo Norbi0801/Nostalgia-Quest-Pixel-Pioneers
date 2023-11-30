@@ -1,8 +1,0 @@
-//
-// Created by norbe on 28.11.2023.
-//
-
-#ifndef PIXELPIONEERS_UIMANAGER_HPP
-#define PIXELPIONEERS_UIMANAGER_HPP
-
-#endif //PIXELPIONEERS_UIMANAGER_HPP

@@ -17,7 +17,9 @@ FetchContent_Declare(SFML
         GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(PixelPioneers src/main.cpp)
+add_executable(PixelPioneers src/main.cpp
+        src/Core/Event/EventM.cpp
+        src/Core/State/StateM.cpp)
 target_link_libraries(PixelPioneers PRIVATE sfml-graphics)
 target_compile_features(PixelPioneers PRIVATE cxx_std_20)
 
