@@ -1,5 +1,5 @@
 //
-// Created by norbe on 30.11.2023.
+// Created by Norbert Olkowski on 30.11.2023.
 //
 
 #include "StateM.hpp"
@@ -105,19 +105,18 @@ namespace StateM {
         m_states.back().second->Activate();
     }
 
-    void StateManager::CreateState(const StateType& l_type){
+    void StateManager::CreateState(const StateType &l_type) {
         auto newState = m_stateFactory.find(l_type);
-        if (newState == m_stateFactory.end()){ return; }
-        BaseState* state = newState->second();
+        if (newState == m_stateFactory.end()) { return; }
+        BaseState *state = newState->second();
         m_states.emplace_back(l_type, state);
         state->OnCreate();
     }
 
-    void StateManager::RemoveState(const StateType& l_type){
+    void StateManager::RemoveState(const StateType &l_type) {
         for (auto itr = m_states.begin();
-             itr != m_states.end(); ++itr)
-        {
-            if (itr->first == l_type){
+             itr != m_states.end(); ++itr) {
+            if (itr->first == l_type) {
                 itr->second->OnDestroy();
                 delete itr->second;
                 m_states.erase(itr);

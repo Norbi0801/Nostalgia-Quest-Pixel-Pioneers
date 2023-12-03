@@ -1,37 +1,21 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 //
 // Created by Norbert Olkowski on 30.11.2023.
 //
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include "EventM.hpp"
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 namespace EventM {
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     EventInfo::EventInfo() { m_code = 0; }
-
-    ////************************************************************************************************************////
-
     EventInfo::EventInfo(int l_event) { m_code = l_event; }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
     EventDetails::EventDetails(const std::string &l_bindName)
             : m_name(l_bindName) {
         Clear();
     }
-
-    ////************************************************************************************************************////
 
     void EventDetails::Clear() {
         m_size = sf::Vector2i(0, 0);
@@ -41,24 +25,16 @@ namespace EventM {
         m_keyCode = -1;
     }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     Binding::Binding(const std::string &l_name)
             : m_name(l_name), m_details(l_name), c(0) {}
-
-    ////************************************************************************************************************////
 
     void Binding::BindEvent(EventType l_type, EventInfo l_info) {
         m_events.emplace_back(l_type, l_info);
     }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     EventManager::EventManager() : m_hasFocus(true) {
         LoadBindings();
     }
-
-    ////************************************************************************************************************////
 
     EventManager::~EventManager() {
         for (auto &itr: m_bindings) {
@@ -67,15 +43,11 @@ namespace EventM {
         }
     }
 
-    ////************************************************************************************************************////
-
     bool EventManager::AddBinding(Binding *l_binding) {
         if (m_bindings.find(l_binding->m_name) != m_bindings.end())
             return false;
         return m_bindings.emplace(l_binding->m_name, l_binding).second;
     }
-
-    ////************************************************************************************************************////
 
     bool EventManager::RemoveBinding(const std::string &l_name) {
         auto itr = m_bindings.find(l_name);
@@ -86,11 +58,7 @@ namespace EventM {
         return true;
     }
 
-    ////************************************************************************************************************////
-
     void EventManager::SetFocus(const bool &l_focus) { m_hasFocus = l_focus; }
-
-    ////************************************************************************************************************////
 
     void EventManager::HandleEvent(sf::Event &l_event) {
         for (auto &b_itr: m_bindings) {
@@ -135,8 +103,6 @@ namespace EventM {
         }
     }
 
-    ////************************************************************************************************************////
-
     void EventManager::Update() {
         if (!m_hasFocus) { return; }
         for (auto &b_itr: m_bindings) {
@@ -165,18 +131,18 @@ namespace EventM {
                         break;
                 }
             }
-            if (bind->m_events.size() == bind->c){
+            if (bind->m_events.size() == bind->c) {
                 auto stateCallbacks = m_callbacks.find(m_currentState);
                 auto otherCallbacks = m_callbacks.find(StateM::StateType(0));
-                if (stateCallbacks != m_callbacks.end()){
+                if (stateCallbacks != m_callbacks.end()) {
                     auto callItr = stateCallbacks->second.find(bind->m_name);
-                    if (callItr != stateCallbacks->second.end()){
+                    if (callItr != stateCallbacks->second.end()) {
                         callItr->second(&bind->m_details);
                     }
                 }
-                if (otherCallbacks != m_callbacks.end()){
+                if (otherCallbacks != m_callbacks.end()) {
                     auto callItr = otherCallbacks->second.find(bind->m_name);
-                    if (callItr != otherCallbacks->second.end()){
+                    if (callItr != otherCallbacks->second.end()) {
                         callItr->second(&bind->m_details);
                     }
                 }
@@ -186,14 +152,10 @@ namespace EventM {
         }
     }
 
-    ////************************************************************************************************************////
-
     sf::Vector2i EventManager::GetMousePos(sf::RenderWindow *l_wind) {
         return (l_wind ? sf::Mouse::getPosition(*l_wind)
                        : sf::Mouse::getPosition());
     }
-
-    ////************************************************************************************************************////
 
     void EventManager::LoadBindings() {
         std::string delimiter = ":";
@@ -233,13 +195,11 @@ namespace EventM {
         bindings.close();
     }
 
-    ////************************************************************************************************************////
-
-    bool  EventManager::RemoveCallback(StateM::StateType l_state, const std::string& l_name){
+    bool EventManager::RemoveCallback(StateM::StateType l_state, const std::string &l_name) {
         auto itr = m_callbacks.find(l_state);
-        if (itr == m_callbacks.end()){ return false; }
+        if (itr == m_callbacks.end()) { return false; }
         auto itr2 = itr->second.find(l_name);
-        if (itr2 == itr->second.end()){ return false; }
+        if (itr2 == itr->second.end()) { return false; }
         itr->second.erase(l_name);
         return true;
     }
@@ -247,7 +207,5 @@ namespace EventM {
     void EventManager::SetCurrentState(const StateM::StateType &type) {
         m_currentState = type;
     }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }
