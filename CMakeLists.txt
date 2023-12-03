@@ -27,8 +27,7 @@ add_executable(PixelPioneers src/main.cpp
         src/Core/Event/Event.cpp
         src/Core/State/State.cpp
         src/Utilities/Utilities.hpp
-        src/Core/Window/Window.cpp
-        src/Core/Window/Window.hpp)
+        src/Core/Window/Window.cpp)
 
     target_link_libraries(PixelPioneers PRIVATE sfml-graphics fmt::fmt)
     target_compile_features(PixelPioneers PRIVATE cxx_std_20)
