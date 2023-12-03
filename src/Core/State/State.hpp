@@ -6,10 +6,10 @@
 
 #include "SFML/Graphics.hpp"
 #include <unordered_map>
-#include "../Event/EventM.hpp"
+#include "../Event/Event.hpp"
 #include "../Window/Window.hpp"
 
-namespace StateM {
+namespace State {
 
     enum class StateType {
         Intro = 1, MainMenu, Game, Paused, GameOver, Credits
@@ -19,7 +19,7 @@ namespace StateM {
         SharedContext() : m_wind(nullptr), m_eventManager(nullptr) {}
 
         Window::Window *m_wind;
-        EventM::EventManager *m_eventManager;
+        Event::EventManager *m_eventManager;
     };
 
     class StateManager;

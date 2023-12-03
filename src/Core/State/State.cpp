@@ -2,9 +2,9 @@
 // Created by Norbert Olkowski on 30.11.2023.
 //
 
-#include "StateM.hpp"
+#include "State.hpp"
 
-namespace StateM {
+namespace State {
     StateManager::StateManager(SharedContext *l_shared)
             : m_shared(l_shared) {
         RegisterState<State_Intro>(StateType::Intro);

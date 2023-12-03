@@ -24,8 +24,8 @@ include(FetchContent)
     FetchContent_MakeAvailable(SFML)
 
 add_executable(PixelPioneers src/main.cpp
-        src/Core/Event/EventM.cpp
-        src/Core/State/StateM.cpp
+        src/Core/Event/Event.cpp
+        src/Core/State/State.cpp
         src/Utilities/Utilities.hpp
         src/Core/Window/Window.cpp
         src/Core/Window/Window.hpp)

@@ -5,9 +5,9 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include "EventM.hpp"
+#include "Event.hpp"
 
-namespace EventM {
+namespace Event {
 
     EventInfo::EventInfo() { m_code = 0; }
     EventInfo::EventInfo(int l_event) { m_code = l_event; }
@@ -133,7 +133,7 @@ namespace EventM {
             }
             if (bind->m_events.size() == bind->c) {
                 auto stateCallbacks = m_callbacks.find(m_currentState);
-                auto otherCallbacks = m_callbacks.find(StateM::StateType(0));
+                auto otherCallbacks = m_callbacks.find(State::StateType(0));
                 if (stateCallbacks != m_callbacks.end()) {
                     auto callItr = stateCallbacks->second.find(bind->m_name);
                     if (callItr != stateCallbacks->second.end()) {
@@ -195,7 +195,7 @@ namespace EventM {
         bindings.close();
     }
 
-    bool EventManager::RemoveCallback(StateM::StateType l_state, const std::string &l_name) {
+    bool EventManager::RemoveCallback(State::StateType l_state, const std::string &l_name) {
         auto itr = m_callbacks.find(l_state);
         if (itr == m_callbacks.end()) { return false; }
         auto itr2 = itr->second.find(l_name);
@@ -204,7 +204,7 @@ namespace EventM {
         return true;
     }
 
-    void EventManager::SetCurrentState(const StateM::StateType &type) {
+    void EventManager::SetCurrentState(const State::StateType &type) {
         m_currentState = type;
     }
 

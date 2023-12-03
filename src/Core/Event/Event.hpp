@@ -6,9 +6,9 @@
 #include "SFML/Graphics.hpp"
 #include <unordered_map>
 #include <functional>
-#include "../State/StateM.hpp"
+#include "../State/State.hpp"
 
-namespace EventM {
+namespace Event {
 
 /*
    The following code is derived from the book "SFML Game Development By Example".
@@ -82,7 +82,7 @@ namespace EventM {
     };
 
     using CallbackContainer = std::unordered_map<std::string, std::function<void(EventDetails*)>>;
-    using Callbacks = std::unordered_map<StateM::StateType, CallbackContainer>;
+    using Callbacks = std::unordered_map<State::StateType, CallbackContainer>;
 
     class EventManager {
     public:
@@ -97,14 +97,14 @@ namespace EventM {
         void SetFocus(const bool &l_focus);
 
         template<class T>
-        bool AddCallback(StateM::StateType l_state, const std::string& l_name, void(T::*l_func)(EventDetails*), T* l_instance){
+        bool AddCallback(State::StateType l_state, const std::string& l_name, void(T::*l_func)(EventDetails*), T* l_instance){
             auto itr = m_callbacks.emplace(
                     l_state, CallbackContainer()).first;
             auto temp = std::bind(l_func, l_instance, std::placeholders::_1);
             return itr->second.emplace(l_name, temp).second;
         }
 
-        bool RemoveCallback(StateM::StateType l_state, const std::string& l_name);
+        bool RemoveCallback(State::StateType l_state, const std::string& l_name);
 
         void HandleEvent(sf::Event &l_event);
 
@@ -112,14 +112,14 @@ namespace EventM {
 
         static sf::Vector2i GetMousePos(sf::RenderWindow *l_wind = nullptr);
 
-        void SetCurrentState(const StateM::StateType &type);
+        void SetCurrentState(const State::StateType &type);
 
     private:
         void LoadBindings();
 
         Bindings m_bindings;
         Callbacks m_callbacks;
-        StateM::StateType m_currentState;
+        State::StateType m_currentState;
         bool m_hasFocus;
     };
 
