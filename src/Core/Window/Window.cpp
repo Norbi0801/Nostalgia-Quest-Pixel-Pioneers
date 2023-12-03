@@ -57,4 +57,16 @@ namespace Window {
     void Window::Draw(sf::Drawable&l_drawable){
         m_window.draw(l_drawable);
     }
+
+    sf::RenderWindow& Window::GetRenderWindow() {
+        return m_window;
+    }
+
+    sf::FloatRect Window::GetViewSpace(){
+        sf::Vector2f viewCenter = m_window.getView().getCenter();
+        sf::Vector2f viewSize = m_window.getView().getSize();
+        sf::Vector2f viewSizeHalf(viewSize.x / 2, viewSize.y / 2);
+        sf::FloatRect viewSpace(viewCenter - viewSizeHalf, viewSize);
+        return viewSpace;
+    }
 }

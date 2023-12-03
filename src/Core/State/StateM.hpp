@@ -7,6 +7,7 @@
 #include "SFML/Graphics.hpp"
 #include <unordered_map>
 #include "../Event/EventM.hpp"
+#include "../Window/Window.hpp"
 
 namespace StateM {
 
@@ -17,7 +18,7 @@ namespace StateM {
     struct SharedContext {
         SharedContext() : m_wind(nullptr), m_eventManager(nullptr) {}
 
-        sf::Window *m_wind;
+        Window::Window *m_wind;
         EventM::EventManager *m_eventManager;
     };
 
@@ -59,10 +60,12 @@ namespace StateM {
 
         StateManager *GetStateManager() { return m_stateMgr; }
 
+        sf::View& GetView(){ return m_view; }
     protected:
         StateManager *m_stateMgr;
         bool m_transparent;
         bool m_transcendent;
+        sf::View m_view;
     };
 
     using StateContainer = std::vector<std::pair<StateType, BaseState *>>;
