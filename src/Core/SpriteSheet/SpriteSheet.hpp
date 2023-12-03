@@ -43,6 +43,8 @@ namespace SpriteSheet {
 
         void SetLooping(const bool &i);
 
+        void SetName(std::string &basicString);
+
         friend std::stringstream &operator>>(
                 std::stringstream &l_stream, Anim_Base &a) {
             a.ReadIn(l_stream);
@@ -68,6 +70,8 @@ namespace SpriteSheet {
         bool m_playing;
         std::string m_name;
         SpriteSheet *m_spriteSheet;
+
+
     };
 
     using Animations = std::unordered_map<std::string, Anim_Base *>;
@@ -116,10 +120,12 @@ namespace SpriteSheet {
         Texture::TextureManager *m_textureManager;
     };
 
-    class Anim_Directional : public Anim_Base{
+    class Anim_Directional : public Anim_Base {
     protected:
         void FrameStep();
+
         void CropSprite();
-        void ReadIn(std::stringstream& l_stream);
+
+        void ReadIn(std::stringstream &l_stream);
     };
 };
