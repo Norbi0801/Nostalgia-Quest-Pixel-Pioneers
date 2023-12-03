@@ -5,6 +5,8 @@
 #include "Texture.hpp"
 
 namespace Texture {
+    TextureManager::TextureManager() : ResourceManager("textures.cfg") {}
+
     sf::Texture *TextureManager::Load(const std::string &l_path) {
         auto *texture = new sf::Texture();
         if (!texture->loadFromFile(
@@ -16,6 +18,4 @@ namespace Texture {
         }
         return texture;
     }
-
-    TextureManager::TextureManager() : ResourceManager("textures.cfg") {}
 }

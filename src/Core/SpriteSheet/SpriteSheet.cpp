@@ -1,5 +1,5 @@
 //
-// Created by norbe on 03.12.2023.
+// Created by Norbert Olkowski on 03.12.2023.
 //
 
 #include "SpriteSheet.hpp"
@@ -72,7 +72,7 @@ namespace SpriteSheet {
                 std::string type;
                 keystream >> type;
                 if(type == "Texture"){
-                    if (m_texture != ""){
+                    if (!m_texture.empty()){
                         std::cerr << "! Duplicate texture entries in: "
                                   << l_file << std::endl;
                         continue;

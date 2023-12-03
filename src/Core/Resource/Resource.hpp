@@ -32,7 +32,7 @@ namespace Resource {
         std::unordered_map<std::string, std::pair<T *, unsigned int>> m_resources;
         std::unordered_map<std::string, std::string> m_paths;
 
-        bool *Load(const std::string &l_path);
+        T *Load(const std::string &l_path);
 
         std::pair<T *, unsigned int> *Find(const std::string &l_id);
 

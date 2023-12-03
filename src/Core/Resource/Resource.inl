@@ -59,7 +59,7 @@ namespace Resource {
     }
 
     template<typename Derived, typename T>
-    bool *ResourceManager<Derived, T>::Load(const std::string &l_path) {
+    T *ResourceManager<Derived, T>::Load(const std::string &l_path) {
         return static_cast<Derived *>(this)->Load(l_path);
     }
 
