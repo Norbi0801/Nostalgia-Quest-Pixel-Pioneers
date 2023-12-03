@@ -5,7 +5,7 @@
 
 #include "Resource.hpp"
 
-namespace Resource{
+namespace Resource {
     template<typename Derived, typename T>
     ResourceManager<Derived, T>::ResourceManager(const std::string &l_pathsFile) {
         LoadPaths(l_pathsFile);
@@ -13,6 +13,12 @@ namespace Resource{
 
     template<typename Derived, typename T>
     ResourceManager<Derived, T>::~ResourceManager() { PurgeResources(); }
+
+    template<typename Derived, typename T>
+    std::string ResourceManager<Derived, T>::GetPath(const std::string &l_id) {
+        auto path = m_paths.find(l_id);
+        return (path != m_paths.end() ? path->second : "");
+    }
 
     template<typename Derived, typename T>
     T *ResourceManager<Derived, T>::GetResource(const std::string &l_id) {
@@ -62,6 +68,7 @@ namespace Resource{
         auto itr = m_resources.find(l_id);
         return (itr != m_resources.end() ? &itr->second : nullptr);
     }
+
     template<typename Derived, typename T>
     bool ResourceManager<Derived, T>::Unload(const std::string &l_id) {
         auto itr = m_resources.find(l_id);
@@ -70,6 +77,7 @@ namespace Resource{
         m_resources.erase(itr);
         return true;
     }
+
     template<typename Derived, typename T>
     void ResourceManager<Derived, T>::LoadPaths(const std::string &l_pathFile) {
         std::ifstream paths;

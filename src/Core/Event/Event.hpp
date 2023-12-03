@@ -70,7 +70,7 @@ namespace Event {
     using Bindings = std::unordered_map<std::string, Binding *>;
 
     template<class T>
-    struct Callback{
+    struct Callback {
         std::string m_name;
         T *CallbackInstance;
 
@@ -81,7 +81,7 @@ namespace Event {
         }
     };
 
-    using CallbackContainer = std::unordered_map<std::string, std::function<void(EventDetails*)>>;
+    using CallbackContainer = std::unordered_map<std::string, std::function<void(EventDetails *)>>;
     using Callbacks = std::unordered_map<State::StateType, CallbackContainer>;
 
     class EventManager {
@@ -97,14 +97,15 @@ namespace Event {
         void SetFocus(const bool &l_focus);
 
         template<class T>
-        bool AddCallback(State::StateType l_state, const std::string& l_name, void(T::*l_func)(EventDetails*), T* l_instance){
+        bool AddCallback(State::StateType l_state, const std::string &l_name, void(T::*l_func)(EventDetails *),
+                         T *l_instance) {
             auto itr = m_callbacks.emplace(
                     l_state, CallbackContainer()).first;
             auto temp = std::bind(l_func, l_instance, std::placeholders::_1);
             return itr->second.emplace(l_name, temp).second;
         }
 
-        bool RemoveCallback(State::StateType l_state, const std::string& l_name);
+        bool RemoveCallback(State::StateType l_state, const std::string &l_name);
 
         void HandleEvent(sf::Event &l_event);
 

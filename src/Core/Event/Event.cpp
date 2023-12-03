@@ -10,6 +10,7 @@
 namespace Event {
 
     EventInfo::EventInfo() { m_code = 0; }
+
     EventInfo::EventInfo(int l_event) { m_code = l_event; }
 
     EventDetails::EventDetails(const std::string &l_bindName)

@@ -20,10 +20,7 @@ namespace Resource {
 
         T *GetResource(const std::string &l_id);
 
-        std::string GetPath(const std::string &l_id) {
-            auto path = m_paths.find(l_id);
-            return (path != m_paths.end() ? path->second : "");
-        }
+        std::string GetPath(const std::string &l_id);
 
         bool RequireResource(const std::string &l_id);
 
@@ -32,8 +29,7 @@ namespace Resource {
         void PurgeResources();
 
     private:
-        std::unordered_map<std::string,
-                std::pair<T *, unsigned int>> m_resources;
+        std::unordered_map<std::string, std::pair<T *, unsigned int>> m_resources;
         std::unordered_map<std::string, std::string> m_paths;
 
         bool *Load(const std::string &l_path);
