@@ -29,7 +29,8 @@ add_executable(PixelPioneers src/main.cpp
         src/Utilities/Utilities.hpp
         src/Core/Window/Window.cpp
         src/Core/Texture/Texture.cpp
-        src/Core/SpriteSheet/SpriteSheet.cpp)
+        src/Core/SpriteSheet/SpriteSheet.cpp
+        src/Map/Tile/Tile.cpp)
 
     target_link_libraries(PixelPioneers PRIVATE sfml-graphics fmt::fmt)
     target_compile_features(PixelPioneers PRIVATE cxx_std_20)
