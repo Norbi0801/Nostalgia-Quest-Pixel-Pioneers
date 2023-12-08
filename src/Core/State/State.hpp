@@ -8,6 +8,7 @@
 #include <unordered_map>
 #include "../Event/Event.hpp"
 #include "../Window/Window.hpp"
+#include "../Texture/Texture.hpp"
 
 namespace State {
 
@@ -16,10 +17,11 @@ namespace State {
     };
 
     struct SharedContext {
-        SharedContext() : m_wind(nullptr), m_eventManager(nullptr) {}
+        SharedContext() : m_wind(nullptr), m_eventManager(nullptr), m_textureManager(nullptr) {}
 
         Window::Window *m_wind;
         Event::EventManager *m_eventManager;
+        Texture::TextureManager *m_textureManager;
     };
 
     class StateManager;
