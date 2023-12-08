@@ -1,6 +1,7 @@
 //
 // Created by Norbert Olkowski on 08.12.2023.
 //
+#pragma once
 
 #include "../../Core/State/State.hpp"
 #include "../../Core/Texture/Texture.hpp"
