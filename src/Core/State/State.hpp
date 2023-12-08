@@ -9,7 +9,7 @@
 #include "../Event/Event.hpp"
 #include "../Window/Window.hpp"
 #include "../Texture/Texture.hpp"
-#include "../../Map/Map/Map.hpp"
+#include "../Map/Map.hpp"
 
 namespace State {
 

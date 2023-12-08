@@ -3,9 +3,9 @@
 //
 #pragma once
 
-#include "../../Core/State/State.hpp"
-#include "../../Core/Texture/Texture.hpp"
-#include <SFML/Graphics/Sprite.hpp>
+#include "../State/State.hpp"
+#include "../Texture/Texture.hpp"
+#include "SFML/Graphics/Sprite.hpp"
 #include <string>
 
 namespace Tile {
