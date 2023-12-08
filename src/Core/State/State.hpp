@@ -9,6 +9,7 @@
 #include "../Event/Event.hpp"
 #include "../Window/Window.hpp"
 #include "../Texture/Texture.hpp"
+#include "../../Map/Map/Map.hpp"
 
 namespace State {
 
@@ -17,11 +18,12 @@ namespace State {
     };
 
     struct SharedContext {
-        SharedContext() : m_wind(nullptr), m_eventManager(nullptr), m_textureManager(nullptr) {}
+        SharedContext() : m_wind(nullptr), m_eventManager(nullptr), m_textureManager(nullptr), m_gameMap(nullptr) {}
 
         Window::Window *m_wind;
         Event::EventManager *m_eventManager;
         Texture::TextureManager *m_textureManager;
+        Map::Map *m_gameMap;
     };
 
     class StateManager;
