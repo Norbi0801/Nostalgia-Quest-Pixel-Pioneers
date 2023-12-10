@@ -4,8 +4,9 @@
 
 #pragma once
 
-#include "../State/State.hpp"
 #include "../Tile/Tile.hpp"
+#include "../State/State.hpp"
+
 #include <unordered_map>
 
 namespace Map {

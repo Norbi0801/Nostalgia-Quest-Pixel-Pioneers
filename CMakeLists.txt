@@ -26,7 +26,6 @@ include(FetchContent)
 add_executable(PixelPioneers src/main.cpp
         src/Core/Event/Event.cpp
         src/Core/State/State.cpp
-        src/Utilities/Utilities.hpp
         src/Core/Window/Window.cpp
         src/Core/Texture/Texture.cpp
         src/Core/SpriteSheet/SpriteSheet.cpp

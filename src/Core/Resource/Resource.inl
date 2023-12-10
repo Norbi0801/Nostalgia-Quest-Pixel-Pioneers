@@ -2,6 +2,7 @@
 // Created by Norbert Olkowski on 03.12.2023.
 //
 
+#pragma once
 
 #include "Resource.hpp"
 

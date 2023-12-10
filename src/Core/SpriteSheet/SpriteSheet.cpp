@@ -191,7 +191,7 @@ namespace SpriteSheet {
     }
 
     void Anim_Base::SetName(std::string& basicString) {
-        m_name = basicString
+        m_name = basicString;
     }
 
     void Anim_Directional::CropSprite() {

@@ -36,8 +36,7 @@ namespace Map {
             if (!m_nextMap.empty()) {
                 LoadMap("media/maps/" + m_nextMap);
             } else {
-                m_currentState->GetStateManager()->
-                        SwitchTo(State::StateType::GameOver);
+                m_currentState->GetStateManager()->SwitchTo(State::StateType::GameOver);
             }
             m_nextMap = "";
         }
@@ -76,7 +75,7 @@ namespace Map {
             delete itr.second;
         }
         m_tileMap.clear();
-        m_context->m_entityManager->Purge();
+        //m_context->m_entityManager->Purge();
         if (m_backgroundTexture.empty()) { return; }
         m_context->m_textureManager->
                 ReleaseResource(m_backgroundTexture);

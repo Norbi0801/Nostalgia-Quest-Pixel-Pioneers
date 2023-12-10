@@ -4,9 +4,12 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
+#include "../State/StateType.hpp"
 #include <unordered_map>
 #include <functional>
-#include "../State/State.hpp"
+#include <fstream>
+#include <iostream>
+#include <sstream>
 
 namespace Event {
 
