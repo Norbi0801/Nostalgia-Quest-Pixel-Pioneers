@@ -2,6 +2,8 @@
 // Created by Norbert Olkowski on 12.12.2023.
 //
 
+#pragma once
+
 #include <stdint.h>
 
 using Bitset = uint32_t;
