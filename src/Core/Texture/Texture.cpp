@@ -3,6 +3,7 @@
 //
 
 #include "Texture.hpp"
+#include "../../Utilities/Utilities.hpp"
 
 namespace Texture {
     TextureManager::TextureManager() : ResourceManager("textures.cfg") {}

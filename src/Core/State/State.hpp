@@ -6,7 +6,6 @@
 
 #include "SFML/Graphics.hpp"
 #include "SharedContext.hpp"
-#include <unordered_map>
 #include "BaseState.hpp"
 
 namespace State {

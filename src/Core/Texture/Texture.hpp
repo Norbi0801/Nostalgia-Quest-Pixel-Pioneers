@@ -3,7 +3,6 @@
 //
 #pragma once
 
-#include "../../Utilities/Utilities.hpp"
 #include "SFML/Graphics/Texture.hpp"
 #include "../Resource/Resource.hpp"
 
