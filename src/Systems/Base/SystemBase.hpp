@@ -8,6 +8,7 @@
 
 #include "../../Utilities/Bitmask.hpp"
 #include "../../Core/Entity/Entity.hpp"
+#include "../../Utilities/Communicator.hpp"
 
 
 namespace System {
@@ -17,7 +18,7 @@ namespace System {
 
     class SystemManager;
 
-    class Base {
+    class Base : public Observer{
     public:
         Base(const ECS::System &l_id, SystemManager *l_systemMgr);
 
