@@ -41,7 +41,9 @@ add_executable(PixelPioneers src/main.cpp
         src/Systems/Base/SystemBase.cpp
         src/Components/Position/Position.hpp
         src/Core/System/System.cpp
-        src/Components/Drawable/Drawable.hpp)
+        src/Components/Drawable/Drawable.hpp
+        src/Components/SpriteSheet/SpriteSheet.hpp
+        src/Components/SpriteSheet/SpriteSheet.hpp)
 
     target_link_libraries(PixelPioneers PRIVATE sfml-graphics fmt::fmt)
     target_compile_features(PixelPioneers PRIVATE cxx_std_20)

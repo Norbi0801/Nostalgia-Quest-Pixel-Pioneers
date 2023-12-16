@@ -104,14 +104,14 @@ namespace SpriteSheet {
 
         void Draw(sf::RenderWindow *l_wnd);
 
-        sf::Vector2i GetSpriteSize();
+        sf::Vector2u GetSpriteSize();
 
         int GetDirection();
 
     private:
         std::string m_texture;
         sf::Sprite m_sprite;
-        sf::Vector2i m_spriteSize;
+        sf::Vector2u m_spriteSize;
         sf::Vector2f m_spriteScale;
         Direction m_direction;
         std::string m_animType;
