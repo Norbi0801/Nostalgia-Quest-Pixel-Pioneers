@@ -39,7 +39,7 @@ namespace System {
         virtual void Update(float l_dT) = 0;
 
         virtual void HandleEvent(const Entity::EntityId &l_entity,
-                                 const Entity::EntityId &l_event) = 0;
+                                 const ECS::EntityEvent &l_event) = 0;
 
     protected:
         ECS::System m_id;

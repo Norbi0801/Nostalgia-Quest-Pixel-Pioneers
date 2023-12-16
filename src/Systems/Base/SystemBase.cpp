@@ -2,11 +2,8 @@
 // Created by Norbert Olkowski on 12.12.2023.
 //
 
-#pragma once
-
 #include "SystemBase.hpp"
-// # TODO Dodać tu odpowiednią ścieżkę
-#include "SystemManager.hpp"
+#include "../../Core/System/System.hpp"
 
 namespace System {
 
