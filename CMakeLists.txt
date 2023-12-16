@@ -30,10 +30,23 @@ add_executable(PixelPioneers src/main.cpp
         src/Core/Texture/Texture.cpp
         src/Core/SpriteSheet/SpriteSheet.cpp
         src/Core/Tile/Tile.cpp
-        src/Core/Map/Map.cpp)
+        src/Core/Map/Map.cpp
+        src/Utilities/MessageHandler.hpp
+        src/Core/System/System.hpp
+        src/Utilities/Observer.hpp
+        src/Utilities/EventQueue.hpp
+        src/Utilities/Communicator.hpp
+        src/Utilities/Bitmask.hpp
+        src/Systems/Base/SystemBase.hpp
+        src/Systems/Base/SystemBase.cpp
+        src/Components/Position/Position.hpp
+        src/Core/System/System.cpp)
 
     target_link_libraries(PixelPioneers PRIVATE sfml-graphics fmt::fmt)
     target_compile_features(PixelPioneers PRIVATE cxx_std_20)
+    target_include_directories(PixelPioneers PRIVATE
+            ${CMAKE_CURRENT_SOURCE_DIR}/src
+    )
 
 if(WIN32)
     add_custom_command(
