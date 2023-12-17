@@ -128,7 +128,7 @@ namespace SpriteSheet {
         return false;
     }
 
-    sf::Vector2u SpriteSheet::GetSpriteSize() {
+    sf::Vector2i SpriteSheet::GetSpriteSize() {
         return m_spriteSize;
     }
 

@@ -32,7 +32,7 @@ namespace Component{
         void UpdatePosition(const sf::Vector2f& l_vec) override{
             m_spriteSheet->SetSpritePosition(l_vec);
         }
-        const sf::Vector2u& GetSize() override{
+        const sf::Vector2i& GetSize() override{
             return m_spriteSheet->GetSpriteSize();
         }
         void Draw(sf::RenderWindow* l_wind) override{

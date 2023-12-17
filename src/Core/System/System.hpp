@@ -10,18 +10,21 @@
 #include "Utilities/MessageHandler.hpp"
 #include "Core/Window/Window.hpp"
 
+namespace Entity{
+    class EntityManager;
+}
+
 namespace System{
     using SystemContainer = std::unordered_map<ECS::System,System::Base*>;
     using EntityEventContainer = std::unordered_map<
             Entity::EntityId,EventQueue>;
 
-    class EntityManager;
     class SystemManager{
     public:
         SystemManager();
         ~SystemManager();
-        void SetEntityManager(EntityManager* l_entityMgr);
-        EntityManager* GetEntityManager();
+        void SetEntityManager(Entity::EntityManager* l_entityMgr);
+        Entity::EntityManager* GetEntityManager();
         MessageHandler* GetMessageHandler();
         template<class T>
         T* GetSystem(const ECS::System& l_system){
@@ -40,7 +43,7 @@ namespace System{
         void PurgeSystems();
     private:
         SystemContainer m_systems;
-        EntityManager* m_entityManager;
+        Entity::EntityManager* m_entityManager;
         EntityEventContainer m_events;
         MessageHandler m_messages;
     };

@@ -4,6 +4,7 @@
 
 #include "../Entity/Entity.hpp"
 #include "System.hpp"
+#include "Systems/Renderer/Renderer.hpp"
 
 namespace System{
     SystemManager::SystemManager(): m_entityManager(nullptr){
@@ -19,11 +20,11 @@ namespace System{
         PurgeSystems();
     }
 
-    void SystemManager::SetEntityManager(EntityManager* l_entityMgr){
+    void SystemManager::SetEntityManager(Entity::EntityManager* l_entityMgr){
         if(!m_entityManager){ m_entityManager = l_entityMgr; }
     }
 
-    EntityManager* SystemManager::GetEntityManager(){
+    Entity::EntityManager* SystemManager::GetEntityManager(){
         return m_entityManager;
     }
 
@@ -63,7 +64,7 @@ namespace System{
     {
         auto itr = m_systems.find(ECS::System::Renderer);
         if (itr == m_systems.end()){ return; }
-        System::Renderer* system = (System::Renderer*)itr->second;
+        auto* system = (System::Renderer*)itr->second;
         system->Render(l_wind, l_elevation);
     }
 
