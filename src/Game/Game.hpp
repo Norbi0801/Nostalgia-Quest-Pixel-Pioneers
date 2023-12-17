@@ -6,6 +6,7 @@
 
 #include "Core/Window/Window.hpp"
 #include "Core/System/System.hpp"
+#include "Core/State/State.hpp"
 
 class Game{
 public:
@@ -24,4 +25,7 @@ private:
     double frametime;
     System::SystemManager m_systemManager;
     Entity::EntityManager m_entityManager;
+    Texture::TextureManager m_textureManager;
+    State::StateManager m_stateManager;
+    State::SharedContext m_context;
 };

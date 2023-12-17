@@ -2,12 +2,13 @@
 // Created by Norbert Olkowski on 16.12.2023.
 //
 
-#include "Renderer.hpp"
-#include "Components/SpriteSheet/SpriteSheet.hpp"
-#include "Core/Entity/Entity.hpp"
-#include "Components/Position/Position.hpp"
+
 #include <algorithm>
-#include <adomd.h>
+
+#include "Core/Entity/Entity.hpp"
+#include "Components/SpriteSheet/SpriteSheet.hpp"
+#include "Components/Position/Position.hpp"
+#include "Renderer.hpp"
 
 namespace System {
     void Renderer::SetSheetDirection(const Entity::EntityId &l_entity,

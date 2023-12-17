@@ -2,8 +2,10 @@
 // Created by Norbert Olkowski on 12.12.2023.
 //
 
+#include "Core/System/System.hpp"
 #include "Entity.hpp"
 #include "../../Components/Position/Position.hpp"
+#include "Components/SpriteSheet/SpriteSheet.hpp"
 
 namespace Entity {
 
@@ -31,7 +33,7 @@ namespace Entity {
         }
 //
         m_systems->EntityModified(entity,l_mask);
-        m_systems->AddEvent(entity,(Entity::EntityId)EntityEvent::Spawned);
+        m_systems->AddEvent(entity,(Entity::EntityId)ECS::EntityEvent::Spawned);
         return entity;
     }
 
@@ -135,15 +137,15 @@ namespace Entity {
                 if (EntityId == -1){ continue; }
                 unsigned int c_id = 0;
                 keystream >> c_id;
-                Component::Base* component = GetComponent<Component::Base>
+                auto* component = GetComponent<Component::Base>
                         (EntityId,(ECS::Component)c_id);
                 if (!component){ continue; }
                 keystream >> *component;
-                // # TODO
-                //if(component->GetType() == ECS::Component::SpriteSheet){
-                //    Component::SpriteSheet* sheet = (C_SpriteSheet*)component;
-                //    sheet->Create(m_textureManager);
-                //}
+
+                if(component->GetType() == ECS::Component::SpriteSheet){
+                    auto* sheet = (Component::SpriteSheet*)component;
+                    sheet->Create(m_textureManager);
+                }
             }
         }
         file.close();

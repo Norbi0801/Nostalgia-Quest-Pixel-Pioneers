@@ -48,7 +48,8 @@ add_executable(PixelPioneers src/main.cpp
         src/Systems/Renderer/Renderer.cpp
         src/Systems/Renderer/Renderer.cpp
         src/Game/Game.hpp
-        src/Game/Game.cpp)
+        src/Game/Game.cpp
+        src/Core/Entity/Entity.cpp)
 
     target_link_libraries(PixelPioneers PRIVATE sfml-graphics fmt::fmt)
     target_compile_features(PixelPioneers PRIVATE cxx_std_20)

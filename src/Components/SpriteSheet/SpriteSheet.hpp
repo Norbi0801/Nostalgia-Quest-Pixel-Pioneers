@@ -35,7 +35,7 @@ namespace Component{
         const sf::Vector2i& GetSize() override{
             return m_spriteSheet->GetSpriteSize();
         }
-        void Draw(sf::RenderWindow* l_wind) override{
+        void Draw(sf::RenderWindow* l_wind){
             if (!m_spriteSheet){ return; }
             m_spriteSheet->Draw(l_wind);
         }

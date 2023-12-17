@@ -2,7 +2,7 @@
 // Created by Norbert Olkowski on 16.12.2023.
 //
 
-#include "../Entity/Entity.hpp"
+#include "Core/Entity/Entity.hpp"
 #include "System.hpp"
 #include "Systems/Renderer/Renderer.hpp"
 

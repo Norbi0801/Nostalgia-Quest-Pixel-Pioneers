@@ -8,9 +8,9 @@
 #include <unordered_map>
 #include <functional>
 
-#include "../../Utilities/Bitmask.hpp"
-#include "../../Components/Base/ComponentBase.hpp"
-#include "../../Core/Texture/Texture.hpp"
+#include "Utilities/Bitmask.hpp"
+#include "Components/Base/ComponentBase.hpp"
+#include "Core/Texture/Texture.hpp"
 
 namespace System {
     class SystemManager;
