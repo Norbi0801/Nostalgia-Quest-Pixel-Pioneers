@@ -54,7 +54,9 @@ add_executable(PixelPioneers src/main.cpp
         src/States/State_Game/State_Game.cpp
         src/States/State_Game/State_Game.cpp
         src/States/State_Intro/State_Intro.hpp
-        src/States/State_Intro/State_Intro.cpp)
+        src/States/State_Intro/State_Intro.cpp
+        src/States/State_MainMenu/State_MainMenu.cpp
+        src/States/State_Paused/State_Paused.cpp)
 
     target_link_libraries(PixelPioneers PRIVATE sfml-graphics fmt::fmt)
     target_compile_features(PixelPioneers PRIVATE cxx_std_20)
