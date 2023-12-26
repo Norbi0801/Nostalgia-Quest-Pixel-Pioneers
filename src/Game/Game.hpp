@@ -18,6 +18,7 @@ public:
     Window::Window* GetWindow();
     sf::Time GetElapsed();
     void RestartClock();
+    void LateUpdate();
 private:
     Window::Window m_window;
     sf::Clock m_clock;

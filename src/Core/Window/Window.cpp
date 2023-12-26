@@ -18,6 +18,9 @@ namespace Window {
         m_windowSize = l_size;
         m_isFullscreen = false;
         m_isDone = false;
+        m_isFocused = true;
+        m_eventManager.AddCallback(State::StateType(0),"Fullscreen_toggle",&Window::ToggleFullscreen,this);
+        m_eventManager.AddCallback(State::StateType(0),"Window_close", &Window::Close,this);
         Create();
     }
 
@@ -31,16 +34,20 @@ namespace Window {
         m_window.close();
     }
 
-    void Window::Update() {
+    void Window::Update(){
         sf::Event event{};
-        while (m_window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                m_isDone = true;
-            } else if (event.type == sf::Event::KeyPressed &&
-                       event.key.code == sf::Keyboard::F5) {
-                ToggleFullscreen();
+        while(m_window.pollEvent(event)){
+            if (event.type == sf::Event::LostFocus){
+                m_isFocused = false;
+                m_eventManager.SetFocus(false);
             }
+            else if (event.type == sf::Event::GainedFocus){
+                m_isFocused = true;
+                m_eventManager.SetFocus(true);
+            }
+            m_eventManager.HandleEvent(event);
         }
+        m_eventManager.Update();
     }
 
     void Window::ToggleFullscreen() {
@@ -73,5 +80,19 @@ namespace Window {
         sf::Vector2f viewSizeHalf(viewSize.x / 2, viewSize.y / 2);
         sf::FloatRect viewSpace(viewCenter - viewSizeHalf, viewSize);
         return viewSpace;
+    }
+
+    void Window::ToggleFullscreen(Event::EventDetails* l_details) {
+        m_isFullscreen = !m_isFullscreen;
+        Destroy();
+        Create();
+    }
+
+    void Window::Close(Event::EventDetails *l_details) {
+        m_isDone = true;
+    }
+
+    Event::EventManager& Window::GetEventManager() {
+        return m_eventManager;
     }
 }

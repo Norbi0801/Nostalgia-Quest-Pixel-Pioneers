@@ -9,6 +9,9 @@ Game::Game(): m_window("Chapter 2", sf::Vector2u(800,600)),m_entityManager(&m_sy
     m_systemManager.SetEntityManager(&m_entityManager);
     m_context.m_systemManager = &m_systemManager;
     m_context.m_entityManager = &m_entityManager;
+    m_context.m_wind = &m_window;
+    m_context.m_eventManager = &m_window.GetEventManager();
+    m_stateManager.SwitchTo(State::StateType::Intro);
 }
 
 Game::~Game() = default;

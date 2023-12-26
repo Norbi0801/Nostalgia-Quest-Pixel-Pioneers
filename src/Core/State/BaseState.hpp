@@ -14,6 +14,7 @@ namespace State {
 
     class StateManager;
 
+    // TODO Move this to states and change name to StateBase
     class BaseState {
         friend class StateManager;
 
