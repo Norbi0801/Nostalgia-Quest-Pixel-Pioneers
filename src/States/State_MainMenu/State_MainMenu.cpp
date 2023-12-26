@@ -93,4 +93,8 @@ namespace State {
             window.draw(m_labels[i]);
         }
     }
+
+    State_MainMenu::State_MainMenu(StateManager *pManager) : BaseState(pManager) {
+
+    }
 }

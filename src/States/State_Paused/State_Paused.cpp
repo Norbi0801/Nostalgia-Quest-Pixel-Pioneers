@@ -48,4 +48,6 @@ namespace State{
     void State_Paused::Deactivate(){}
     void State_Paused::Update(const sf::Time &l_time) {}
 
+    State_Paused::State_Paused(StateManager *pManager) : BaseState(pManager) {}
+
 }

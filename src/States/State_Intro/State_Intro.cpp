@@ -60,4 +60,6 @@ namespace State {
 
     void State_Intro::Activate(){}
     void State_Intro::Deactivate(){}
+
+    State_Intro::State_Intro(StateManager *pManager) : BaseState(pManager) {}
 }

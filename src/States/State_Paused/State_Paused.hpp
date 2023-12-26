@@ -9,6 +9,8 @@
 namespace State {
     class State_Paused : public BaseState{
     public:
+        State_Paused(StateManager *pManager);
+
         void OnCreate() override;
 
         void OnDestroy();

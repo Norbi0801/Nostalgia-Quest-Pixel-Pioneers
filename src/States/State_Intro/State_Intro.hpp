@@ -9,6 +9,8 @@
 namespace State {
     class State_Intro : public BaseState{
     public:
+        State_Intro(StateManager *pManager);
+
         void OnCreate() override;
 
         void OnDestroy();

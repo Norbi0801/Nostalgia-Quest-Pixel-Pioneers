@@ -9,6 +9,8 @@
 namespace State {
     class State_MainMenu : public BaseState{
     public:
+        State_MainMenu(StateManager *pManager);
+
         void OnCreate() override;
 
         void OnDestroy();

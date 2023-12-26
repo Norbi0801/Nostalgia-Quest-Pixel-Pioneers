@@ -11,6 +11,8 @@ namespace State {
 
     class State_Game : public BaseState {
     public:
+        State_Game(StateManager *pManager);
+
         void OnCreate() override;
 
         void OnDestroy();

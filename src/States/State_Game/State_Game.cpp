@@ -64,4 +64,8 @@ namespace State {
 
     void State_Game::Deactivate() {
     }
+
+    State_Game::State_Game(StateManager *pManager) : BaseState(pManager) {
+
+    }
 }
