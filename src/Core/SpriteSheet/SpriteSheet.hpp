@@ -5,13 +5,9 @@
 
 #include "../Texture/Texture.hpp"
 #include "SFML/Graphics.hpp"
+#include "Utilities/Direction.hpp"
 
 namespace SpriteSheet {
-
-    enum class Direction {
-        Right = 0, Left
-    };
-
 
     class SpriteSheet;
 

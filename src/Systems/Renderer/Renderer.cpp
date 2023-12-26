@@ -12,7 +12,7 @@
 
 namespace System {
     void Renderer::SetSheetDirection(const Entity::EntityId &l_entity,
-                                     const SpriteSheet::Direction &l_dir) {
+                                     const Direction &l_dir) {
         Entity::EntityManager *entities = m_systemManager->GetEntityManager();
         if (!entities->HasComponent(l_entity,
                                     ECS::Component::SpriteSheet)) {
@@ -80,7 +80,7 @@ namespace System {
             switch (m) {
                 case ECS::EntityMessage::Direction_Changed:
                     SetSheetDirection(l_message.m_receiver,
-                                      (SpriteSheet::Direction) l_message.m_int);
+                                      (Direction) l_message.m_int);
                     break;
             }
         }

@@ -56,7 +56,13 @@ add_executable(PixelPioneers src/main.cpp
         src/States/State_Intro/State_Intro.hpp
         src/States/State_Intro/State_Intro.cpp
         src/States/State_MainMenu/State_MainMenu.cpp
-        src/States/State_Paused/State_Paused.cpp)
+        src/States/State_Paused/State_Paused.cpp
+        src/Components/Movable/Movable.hpp
+        src/Utilities/Direction.hpp
+        src/Components/Movable/Movable.cpp
+        src/Utilities/Axis.hpp
+        src/Systems/Movement/Movement.hpp
+        src/Systems/Movement/Movement.cpp)
 
     target_link_libraries(PixelPioneers PRIVATE sfml-graphics fmt::fmt)
     target_compile_features(PixelPioneers PRIVATE cxx_std_20)

@@ -4,6 +4,7 @@
 
 #include "Core/State/State.hpp"
 #include "State_Game.hpp"
+#include "Systems/Movement/Movement.hpp"
 
 namespace State {
 
@@ -18,6 +19,8 @@ namespace State {
                            &State_Game::MainMenu, this);
         evMgr->AddCallback(StateType::Game, "Key_P",
                            &State_Game::Pause, this);
+        m_stateMgr->GetContext()->m_systemManager->
+                GetSystem<System::Movement>(ECS::System::Movement)->SetMap(m_gameMap);
     }
 
     void State_Game::OnDestroy() {
