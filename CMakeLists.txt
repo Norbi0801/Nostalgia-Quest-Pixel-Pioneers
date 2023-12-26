@@ -52,7 +52,9 @@ add_executable(PixelPioneers src/main.cpp
         src/Core/Entity/Entity.cpp
         src/States/State_Game/State_Game.hpp
         src/States/State_Game/State_Game.cpp
-        src/States/State_Game/State_Game.cpp)
+        src/States/State_Game/State_Game.cpp
+        src/States/State_Intro/State_Intro.hpp
+        src/States/State_Intro/State_Intro.cpp)
 
     target_link_libraries(PixelPioneers PRIVATE sfml-graphics fmt::fmt)
     target_compile_features(PixelPioneers PRIVATE cxx_std_20)

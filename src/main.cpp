@@ -7,7 +7,6 @@ int main(int argc, char *argv[]) {
     while(!game.GetWindow()->IsDone()){
         game.Update();
         game.Render();
-        sf::sleep(sf::seconds(0.2));
-        game.RestartClock();
+        game.LateUpdate();
     }
 }

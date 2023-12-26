@@ -4,8 +4,8 @@
 
 #include "Game.hpp"
 
-Game::Game(): m_window("Chapter 2", sf::Vector2u(800,600)),m_entityManager(&m_systemManager, &m_textureManager),
-              m_stateManager(&m_context){
+Game::Game() : m_window("Chapter 2", sf::Vector2u(800, 600)), m_entityManager(&m_systemManager, &m_textureManager),
+               m_stateManager(&m_context) {
     m_systemManager.SetEntityManager(&m_entityManager);
     m_context.m_systemManager = &m_systemManager;
     m_context.m_entityManager = &m_entityManager;
@@ -16,21 +16,28 @@ Game::Game(): m_window("Chapter 2", sf::Vector2u(800,600)),m_entityManager(&m_sy
 
 Game::~Game() = default;
 
-void Game::Update(){
+void Game::Update() {
     m_window.Update();
+    m_stateManager.Update(m_elapsed);
 }
 
-void Game::Render(){
+void Game::Render() {
     m_window.BeginDraw();
-   /* m_window.Draw();*/
+    m_stateManager.Draw();
     m_window.EndDraw();
 }
 
-sf::Time Game::GetElapsed(){ return m_elapsed; }
-void Game::RestartClock(){
+sf::Time Game::GetElapsed() { return m_elapsed; }
+
+void Game::RestartClock() {
     m_elapsed += m_clock.restart();
 }
 
 Window::Window *Game::GetWindow() {
     return &m_window;
+}
+
+void Game::LateUpdate() {
+    m_stateManager.ProcessRequests();
+    RestartClock();
 }
