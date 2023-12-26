@@ -60,6 +60,10 @@ namespace State {
         }
     }
 
+    void State_MainMenu::Deactivate(){}
+    void State_MainMenu::Update(const sf::Time &l_time) {}
+
+
     void State_MainMenu::MouseClick(Event::EventDetails *l_details) {
         sf::Vector2i mousePos = l_details->m_mouse;
         float halfX = m_buttonSize.x / 2.0f;

@@ -43,4 +43,9 @@ namespace State{
     void State_Paused::Unpause(Event::EventDetails* l_details){
         m_stateMgr->SwitchTo(StateType::Game);
     }
+
+    void State_Paused::Activate(){}
+    void State_Paused::Deactivate(){}
+    void State_Paused::Update(const sf::Time &l_time) {}
+
 }
