@@ -24,6 +24,8 @@ namespace Entity {
     using EntityContainer = std::unordered_map<EntityId, EntityData>;
     using ComponentFactory = std::unordered_map<ECS::Component, std::function<Component::Base *(void)>>;
 
+    enum class EntityState{ Idle, Walking, Attacking, Hurt, Dying };
+
     class EntityManager {
     public:
         EntityManager(System::SystemManager *l_sysMgr,

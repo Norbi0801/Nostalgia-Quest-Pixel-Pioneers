@@ -11,10 +11,10 @@
 
 namespace System {
     Movement::Movement(SystemManager *l_systemMgr)
-            : S_Base(System::Movement, l_systemMgr) {
+            : Base(ECS::System::Movement, l_systemMgr) {
         Bitmask req;
-        req.TurnOnBit((unsigned int) Component::Position);
-        req.TurnOnBit((unsigned int) Component::Movable);
+        req.TurnOnBit((unsigned int) ECS::Component::Position);
+        req.TurnOnBit((unsigned int) ECS::Component::Movable);
         m_requiredComponents.push_back(req);
         req.Clear();
         m_systemManager->GetMessageHandler()->
@@ -22,14 +22,16 @@ namespace System {
         m_gameMap = nullptr;
     }
 
+    Movement::~Movement() = default;
+
     void Movement::Update(float l_dT) {
         if (!m_gameMap) { return; }
         Entity::EntityManager *entities = m_systemManager->GetEntityManager();
         for (auto &entity: m_entities) {
-            Component::Position *position = entities->
-                    GetComponent<Component::Position>(entity, Component::Position);
-            Component::Movable *movable = entities->
-                    GetComponent<Component::Movable>(entity, Component::Movable);
+            auto *position = entities->
+                    GetComponent<Component::Position>(entity, ECS::Component::Position);
+            auto *movable = entities->
+                    GetComponent<Component::Movable>(entity, ECS::Component::Movable);
             MovementStep(l_dT, movable, position);
             position->MoveBy(movable->GetVelocity() * l_dT);
         }
@@ -56,19 +58,14 @@ namespace System {
                 (l_movable->GetVelocity().y / magnitude) * max_V));
     }
 
-    const sf::Vector2f &Movement::GetTileFriction(
-            unsigned int l_elevation, unsigned int l_x, unsigned int l_y) {
-        Tile::Tile *t = nullptr;
-        while (!t && l_elevation >= 0) {
-            t = m_gameMap->GetTile(l_x, l_y, l_elevation);
-            --l_elevation;
-        }
-        return (t ? t->m_properties->m_friction :
-                m_gameMap->GetDefaultTile()->m_friction);
+    const sf::Vector2f &Movement::GetTileFriction(unsigned int l_elevation, unsigned int l_x,
+                                                  unsigned int l_y) {
+        // # TODO delete this ?
+        return {0, 0};
     }
 
     void Movement::HandleEvent(const Entity::EntityId &l_entity,
-                                 const ECS::EntityEvent &l_event) {
+                               const ECS::EntityEvent &l_event) {
         switch (l_event) {
             case ECS::EntityEvent::Colliding_X:
                 StopEntity(l_entity, Axis::x);
@@ -83,69 +80,86 @@ namespace System {
                 SetDirection(l_entity, Direction::Right);
                 break;
             case ECS::EntityEvent::Moving_Up: {
-                Component::Movable *mov = m_systemManager->GetEntityManager()->
-                        GetComponent<Component::Movable>(l_entity, Component::Movable);
+                auto *mov = m_systemManager->GetEntityManager()->
+                        GetComponent<Component::Movable>(l_entity, ECS::Component::Movable);
                 if (mov->GetVelocity().x == 0) {
                     SetDirection(l_entity, Direction::Up);
                 }
             }
                 break;
             case ECS::EntityEvent::Moving_Down: {
-                Component::Movable *mov = m_systemManager->GetEntityManager()->
-                        GetComponent<Component::Movable>(l_entity, Component::Movable);
+                auto *mov = m_systemManager->GetEntityManager()->
+                        GetComponent<Component::Movable>(l_entity, ECS::Component::Movable);
                 if (mov->GetVelocity().x == 0) {
                     SetDirection(l_entity, Direction::Down);
                 }
             }
                 break;
-        }
-    }
-
-    void Movement::Notify(const Message& l_message){
-        Entity::EntityManager* eMgr = m_systemManager->GetEntityManager();
-        ECS::EntityMessage m = (ECS::EntityMessage)l_message.m_type;
-        switch(m){
-            case ECS::EntityMessage::Is_Moving:
-            {
-                if (!HasEntity(l_message.m_receiver)){ return; }
-                Component::Movable* movable = eMgr->GetComponent<movable>
-                        (l_message.m_receiver, Component::Movable);
-                if (movable->GetVelocity() != sf::Vector2f(0.0f, 0.0f))
-                {
-                    return;
-                }
-                m_systemManager->AddEvent(l_message.m_receiver,
-                                          (EventID)ECS::EntityEvent::Became_Idle);
-            }
+            case ECS::EntityEvent::Spawned:
+                break;
+            case ECS::EntityEvent::Despawned:
+                break;
+            case ECS::EntityEvent::Elevation_Change:
+                break;
+            case ECS::EntityEvent::Became_Idle:
+                break;
+            case ECS::EntityEvent::Began_Moving:
                 break;
         }
     }
 
-    void Movement::StopEntity(const Entity::EntityId& l_entity,
-                                const Axis& l_axis)
-    {
-        Component::Movable* movable = m_systemManager->GetEntityManager()->
-                GetComponent<movable>(l_entity,Component::Movable);
-        if(l_axis == Axis::x){
+    void Movement::Notify(const Message &l_message) {
+        Entity::EntityManager *eMgr = m_systemManager->GetEntityManager();
+        auto m = (ECS::EntityMessage) l_message.m_type;
+        switch (m) {
+            case ECS::EntityMessage::Is_Moving: {
+                if (!HasEntity(l_message.m_receiver)) { return; }
+                auto *movable = eMgr->GetComponent<Component::Movable>(l_message.m_receiver, ECS::Component::Movable);
+                if (movable->GetVelocity() != sf::Vector2f(0.0f, 0.0f)) {
+                    return;
+                }
+                m_systemManager->AddEvent(l_message.m_receiver,
+                                          (EventID) ECS::EntityEvent::Became_Idle);
+            }
+                break;
+            case ECS::EntityMessage::Move:
+                break;
+            case ECS::EntityMessage::State_Changed:
+                break;
+            case ECS::EntityMessage::Direction_Changed:
+                break;
+            case ECS::EntityMessage::Switch_State:
+                break;
+            case ECS::EntityMessage::Attack_Action:
+                break;
+            case ECS::EntityMessage::Dead:
+                break;
+        }
+    }
+
+    void Movement::StopEntity(const Entity::EntityId &l_entity,
+                              const Axis &l_axis) {
+        auto *movable = m_systemManager->GetEntityManager()->
+                GetComponent<Component::Movable>(l_entity, ECS::Component::Movable);
+        if (l_axis == Axis::x) {
             movable->SetVelocity(sf::Vector2f(
                     0.f, movable->GetVelocity().y));
-        } else if(l_axis == Axis::y){
+        } else if (l_axis == Axis::y) {
             movable->SetVelocity(sf::Vector2f(
                     movable->GetVelocity().x, 0.f));
         }
     }
 
-    void Movement::SetDirection(const Entity::EntityId& l_entity,
-                                  const Direction& l_dir)
-    {
-        Component::Movable* movable = m_systemManager->GetEntityManager()->
-                GetComponent<movable>(l_entity,Component::Movable);
+    void Movement::SetDirection(const Entity::EntityId &l_entity,
+                                const Direction &l_dir) {
+        auto *movable = m_systemManager->GetEntityManager()->
+                GetComponent<Component::Movable>(l_entity, ECS::Component::Movable);
         movable->SetDirection(l_dir);
-        Message msg((MessageType)ECS::EntityMessage::Direction_Changed);
+        Message msg((MessageType) ECS::EntityMessage::Direction_Changed);
         msg.m_receiver = l_entity;
-        msg.m_int = (int)l_dir;
+        msg.m_int = (int) l_dir;
         m_systemManager->GetMessageHandler()->Dispatch(msg);
     }
 
-    void Movement::SetMap(Map::Map* l_gameMap){ m_gameMap = l_gameMap; }
+    void Movement::SetMap(Map::Map *l_gameMap) { m_gameMap = l_gameMap; }
 }

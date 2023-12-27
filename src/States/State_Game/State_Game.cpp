@@ -1,7 +1,7 @@
 //
 // Created by Norbert Olkowski on 17.12.2023.
 //
-
+#include "Core/Map/Map.hpp"
 #include "Core/State/State.hpp"
 #include "State_Game.hpp"
 #include "Systems/Movement/Movement.hpp"
@@ -19,6 +19,8 @@ namespace State {
                            &State_Game::MainMenu, this);
         evMgr->AddCallback(StateType::Game, "Key_P",
                            &State_Game::Pause, this);
+        m_gameMap = new Map::Map(m_stateMgr->GetContext(), this);
+        m_gameMap->LoadMap("media/Maps/map1.map");
         m_stateMgr->GetContext()->m_systemManager->
                 GetSystem<System::Movement>(ECS::System::Movement)->SetMap(m_gameMap);
     }
@@ -27,6 +29,8 @@ namespace State {
         Event::EventManager *evMgr = m_stateMgr->GetContext()->m_eventManager;
         evMgr->RemoveCallback(StateType::Game, "Key_Escape");
         evMgr->RemoveCallback(StateType::Game, "Key_P");
+        delete m_gameMap;
+        m_gameMap = nullptr;
     }
 
     void State_Game::Update(const sf::Time &l_time) {

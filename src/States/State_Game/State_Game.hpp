@@ -33,5 +33,6 @@ namespace State {
         sf::Texture m_texture;
         sf::Sprite m_sprite;
         sf::Vector2f m_increment;
+        Map::Map* m_gameMap;
     };
 }

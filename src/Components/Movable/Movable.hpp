@@ -44,6 +44,8 @@ namespace Component {
 
         void SetAcceleration(sf::Vector2<float> vector2);
 
+        void SetVelocity(sf::Vector2<float> vector2);
+
     private:
 
         sf::Vector2f m_velocity;

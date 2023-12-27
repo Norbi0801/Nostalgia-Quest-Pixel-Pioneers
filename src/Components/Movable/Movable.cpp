@@ -91,4 +91,8 @@ namespace Component {
     void Movable::SetAcceleration(sf::Vector2<float> vector2) {
         m_acceleration = vector2;
     }
+
+    void Movable::SetVelocity(const sf::Vector2<float> vector2) {
+        m_velocity = vector2;
+    }
 }
