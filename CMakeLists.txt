@@ -62,7 +62,8 @@ add_executable(PixelPioneers src/main.cpp
         src/Components/Movable/Movable.cpp
         src/Utilities/Axis.hpp
         src/Systems/Movement/Movement.hpp
-        src/Systems/Movement/Movement.cpp)
+        src/Systems/Movement/Movement.cpp
+        src/Components/State/State.hpp)
 
     target_link_libraries(PixelPioneers PRIVATE sfml-graphics fmt::fmt)
     target_compile_features(PixelPioneers PRIVATE cxx_std_20)
