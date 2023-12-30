@@ -9,7 +9,7 @@
 namespace Component {
     class Controller : public Base{
     public:
-        Controller() : Base(COMPONENT_CONTROLLER){}
+        Controller() : Base(ECS::Component::Controller){}
         void ReadIn(std::stringstream& l_stream){}
     };
 }

@@ -2,13 +2,14 @@
 // Created by Norbert Olkowski on 30.12.2023.
 //
 
-#include "SheetAnimation.hpp"
 #include "Components/SpriteSheet/SpriteSheet.hpp"
 #include "Components/State/State.hpp"
+#include "SheetAnimation.hpp"
+
 
 namespace System {
     SheetAnimation::SheetAnimation(SystemManager* l_systemMgr)
-    : S_Base(System::SheetAnimation,l_systemMgr)
+    : Base(ECS::System::SheetAnimation,l_systemMgr)
     {
         Bitmask req;
         req.TurnOnBit((unsigned int)ECS::Component::SpriteSheet);
@@ -17,6 +18,8 @@ namespace System {
         m_systemManager->GetMessageHandler()->
         Subscribe(ECS::EntityMessage::State_Changed,this);
     }
+
+    SheetAnimation::~SheetAnimation() = default;
 
     void SheetAnimation::Update(float l_dT){
         auto* entities = m_systemManager->GetEntityManager();
@@ -58,7 +61,7 @@ namespace System {
             switch(m){
                 case ECS::EntityMessage::State_Changed:
                 {
-                    ECS::EntityState s = (ECS::EntityState)l_message.m_int;
+                    auto s = (ECS::EntityState)l_message.m_int;
                     switch(s){
                         case ECS::EntityState::Idle:
                             ChangeAnimation(l_message.m_receiver,"Idle",true,true);
@@ -88,6 +91,10 @@ namespace System {
         auto* sheet = m_systemManager->GetEntityManager()->
                 GetComponent<Component::SpriteSheet>(l_entity,ECS::Component::SpriteSheet);
         sheet->GetSpriteSheet()->SetAnimation(l_anim,l_play,l_loop);
+    }
+
+    void SheetAnimation::HandleEvent(const Entity::EntityId &l_entity, const ECS::EntityEvent &l_event) {
+
     }
 
 }

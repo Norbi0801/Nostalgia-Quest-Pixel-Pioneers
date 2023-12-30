@@ -136,6 +136,10 @@ namespace SpriteSheet {
         return 0;
     }
 
+    Anim_Base *SpriteSheet::GetCurrentAnim() {
+        return m_animationCurrent;
+    }
+
     Anim_Base::Anim_Base() : m_frameCurrent(0), m_frameStart(0),
                              m_frameEnd(0), m_frameRow(0), m_frameTime(0.f),
                              m_elapsedTime(0.f), m_frameActionStart(-1),

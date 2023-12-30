@@ -67,7 +67,8 @@ add_executable(PixelPioneers src/main.cpp
         src/Systems/State/State.cpp
         src/Systems/Control/Control.cpp
         src/Systems/SheetAnimation/SheetAnimation.cpp
-        src/Systems/SheetAnimation/SheetAnimation.hpp)
+        src/Systems/SheetAnimation/SheetAnimation.hpp
+        src/Components/Collidable/Collidable.hpp)
 
     target_link_libraries(PixelPioneers PRIVATE sfml-graphics fmt::fmt)
     target_compile_features(PixelPioneers PRIVATE cxx_std_20)
