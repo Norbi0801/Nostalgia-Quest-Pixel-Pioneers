@@ -18,6 +18,9 @@ namespace System {
     m_systemManager->GetMessageHandler()->
     Subscribe(ECS::EntityMessage::Switch_State,this);
 }
+
+    State::~State() = default;
+
     void State::Update(float l_dT){
         Entity::EntityManager* entities = m_systemManager->GetEntityManager();
         for(auto &entity : m_entities){
@@ -47,9 +50,9 @@ namespace System {
         switch(m){
             case ECS::EntityMessage::Move:
             {
-                Component::State* state = m_systemManager->GetEntityManager()->
+                auto* state = m_systemManager->GetEntityManager()->
                         GetComponent<Component::State>(l_message.m_receiver,
-                                              Component::State);
+                                              ECS::Component::State);
                 if (state->GetState() == ECS::EntityState::Dying){ return; }
                 ECS::EntityEvent e;
                 if (l_message.m_int == (int)Direction::Up){
@@ -78,7 +81,7 @@ namespace System {
     {
         Entity::EntityManager* entities = m_systemManager->GetEntityManager();
         Component::State* state = entities->
-                GetComponent<Component::State>(l_entity, Component::State);
+                GetComponent<Component::State>(l_entity, ECS::Component::State);
         if (!l_force && state->GetState() == ECS::EntityState::Dying){
             return;
         }
