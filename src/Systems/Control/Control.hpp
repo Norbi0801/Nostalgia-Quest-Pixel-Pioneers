@@ -23,6 +23,7 @@ namespace System{
 
         void Notify(const Message &l_message) override;
 
-        void MoveEntity(const EntityId &l_entity, const Direction &l_dir);
+        void MoveEntity(const Entity::EntityId& l_entity,
+                                 const Direction& l_dir);
     };
 }

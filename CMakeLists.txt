@@ -65,7 +65,9 @@ add_executable(PixelPioneers src/main.cpp
         src/Systems/Movement/Movement.cpp
         src/Components/State/State.hpp
         src/Systems/State/State.cpp
-        src/Systems/Control/Control.cpp)
+        src/Systems/Control/Control.cpp
+        src/Systems/SheetAnimation/SheetAnimation.cpp
+        src/Systems/SheetAnimation/SheetAnimation.hpp)
 
     target_link_libraries(PixelPioneers PRIVATE sfml-graphics fmt::fmt)
     target_compile_features(PixelPioneers PRIVATE cxx_std_20)

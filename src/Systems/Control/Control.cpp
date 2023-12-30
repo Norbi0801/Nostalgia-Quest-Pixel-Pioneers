@@ -17,6 +17,15 @@ namespace System {
         req.Clear();
     }
 
+    Control::~Control() = default;
+    void Control::Notify(const Message &l_message) {
+
+    }
+
+    void Control::Update(float l_dT) {
+
+    }
+
     void Control::HandleEvent(const Entity::EntityId& l_entity,
                                 const ECS::EntityEvent& l_event)
     {
@@ -39,4 +48,6 @@ namespace System {
                 GetComponent<Component::Movable>(l_entity, ECS::Component::Movable);
         mov->Move(l_dir);
     }
+
+
 }

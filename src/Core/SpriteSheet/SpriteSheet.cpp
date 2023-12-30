@@ -194,6 +194,14 @@ namespace SpriteSheet {
         m_name = basicString;
     }
 
+    std::string Anim_Base::GetName() {
+        return m_name;
+    }
+
+    bool Anim_Base::IsPlaying() const {
+        return m_playing;
+    }
+
     void Anim_Directional::CropSprite() {
         sf::IntRect rect(
                 m_spriteSheet->GetSpriteSize().x * m_frameCurrent,

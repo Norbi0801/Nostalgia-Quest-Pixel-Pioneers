@@ -41,6 +41,10 @@ namespace SpriteSheet {
 
         void SetName(std::string &basicString);
 
+        std::string GetName();
+
+        bool IsPlaying() const;
+
         friend std::stringstream &operator>>(
                 std::stringstream &l_stream, Anim_Base &a) {
             a.ReadIn(l_stream);
